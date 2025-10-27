@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Lost & Found</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+      (function() {
+        try {
+          const savedTheme = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (savedTheme === 'light' || (!savedTheme && !prefersDark)) {
+            document.documentElement.classList.add('light-theme');
+          } else {
+            document.documentElement.classList.remove('light-theme');
+          }
+        } catch (e) { console.error("Error applying initial theme:", e); }
+      })();
+    </script>
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-container">
+            <div class="header-left">
+                <button id="menuBtn" class="menu-btn" aria-label="Toggle Menu" aria-expanded="false" aria-controls="navMenu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+                <a href="home.html" class="app-logo">
+                    <i class="fas fa-search-location logo-icon"></i>
+                    <h1 class="app-title">Lost & Found</h1>
+                </a>
+            </div>
+             <div class="header-right">
+                <label class="theme-switch" for="themeToggle" title="Toggle theme">
+                    <input type="checkbox" id="themeToggle">
+                    <span class="slider round">
+                        <span class="slider-icon light"><i class="fas fa-sun"></i></span>
+                        <span class="slider-icon dark"><i class="fas fa-moon"></i></span>
+                    </span>
+                </label>
+                <a href="profile.html" class="profile-link active" aria-label="View Profile">
+                    <i class="fas fa-user-circle"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div id="overlay" class="overlay"></div>
+
+    <nav id="navMenu" class="nav-drawer" aria-hidden="true">
+        <div class="nav-drawer-header">
+            <h2 class="nav-drawer-title">Menu</h2>
+        </div>
+        <ul>
+            <li><a href="home.html" class="nav-link"><i class="fas fa-home nav-icon"></i>Home</a></li>
+            <li><a href="report-lost.html" class="nav-link"><i class="fas fa-eye-slash nav-icon"></i>Report Lost Item</a></li>
+            <li><a href="report-found.html" class="nav-link"><i class="fas fa-hand-holding-heart nav-icon"></i>Report Found Item</a></li>
+            <li><a href="lost-items.html" class="nav-link"><i class="fas fa-list-ul nav-icon"></i>View Lost Items</a></li>
+            <li><a href="found-items.html" class="nav-link"><i class="fas fa-box-open nav-icon"></i>View Found Items</a></li>
+            <li><a href="claimed-items.html" class="nav-link"><i class="fas fa-history nav-icon"></i>View Claimed Items</a></li>
+            <li><a href="contact.html" class="nav-link"><i class="fas fa-envelope nav-icon"></i>Contact Admin</a></li>
+            <li><a href="profile.html" class="nav-link active-page"><i class="fas fa-user-circle nav-icon"></i>My Profile</a></li>
+        </ul>
+         <div class="nav-footer">
+            <button id="logoutButton" class="btn btn-tertiary btn-logout">
+                <i class="fas fa-sign-out-alt nav-icon"></i>Logout
+            </button>
+         </div>
+    </nav>
+
+    <main class="profile-main">
+        <div class="main-content-container">
+
+            <section class="profile-info-section animate-on-load fade-in">
+                <div id="profileUpdateMessage" class="form-message" aria-live="assertive"></div>
+                <div class="profile-header">
+                    <div class="profile-avatar-placeholder">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="profile-display-view">
+                        <div class="profile-greeting">
+                            <h2>Welcome, <span id="profileName">User</span>!</h2>
+                            <p id="profileEmail">Loading email...</p>
+                            <p>Member Since: <span id="profileJoined">Loading...</span></p>
+                        </div>
+                    </div>
+                    <form id="profileEditForm" class="profile-edit-form" style="display: none;">
+                        <div class="input-group">
+                            <label for="editProfileName">Full Name</label>
+                            <input type="text" id="editProfileName" name="profileName" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="editProfileEmail">Email (cannot be changed)</label>
+                            <input type="email" id="editProfileEmail" name="profileEmail" readonly disabled>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="profile-actions">
+                     <div class="profile-view-actions">
+                         <button class="btn btn-secondary" id="editProfileBtn"><i class="fas fa-edit"></i> Edit Profile</button>
+                     </div>
+                     <div class="profile-edit-actions" style="display: none;">
+                        <button type="button" class="btn btn-tertiary" id="cancelEditBtn"><i class="fas fa-times"></i> Cancel</button>
+                        <button type="button" class="btn btn-primary" id="saveProfileBtn">
+                            <span class="btn-text">Save Changes</span>
+                            <span class="spinner"></span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="profile-stats">
+                    <div><span id="lostCount">0</span> Lost Items Reported</div>
+                    <div><span id="foundCount">0</span> Found Items Reported</div>
+                </div>
+            </section>
+            
+            <section class="profile-posts-section animate-on-load fade-in delay-1">
+                <div class="user-posts-group">
+                    <h3 class="posts-heading">My Reported Lost Items</h3>
+                    <div id="myLostItemsList" class="items-list user-items-list">
+                        <div class="loading-indicator show"><div class="spinner large"></div><p>Loading your items...</p></div>
+                    </div>
+                </div>
+                <div class="user-posts-group">
+                    <h3 class="posts-heading">My Reported Found Items</h3>
+                    <div id="myFoundItemsList" class="items-list user-items-list">
+                        <div class="loading-indicator show"><div class="spinner large"></div><p>Loading your items...</p></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" data-modal-close aria-label="Close edit dialog">&times;</button>
+            <h3 class="modal-title">Edit Your Report</h3>
+            <form id="editForm" class="modal-form" novalidate>
+                <div id="editFormMessage" class="form-message" aria-live="assertive"></div>
+                <input type="hidden" id="editItemId">
+                <input type="hidden" id="editItemType">
+                <div class="input-group">
+                    <label for="editItemName">Item Name*</label>
+                    <input type="text" id="editItemName" required>
+                </div>
+                <div class="input-group">
+                    <label for="editDescription">Description*</label>
+                    <textarea id="editDescription" rows="3" required></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="editCampus">Campus*</label>
+                    <select id="editCampus" required>
+                        <option value="Sidist Kilo Campus">Sidist Kilo Campus</option>
+                        <option value="Arat Kilo Campus">Arat Kilo Campus</option>
+                        <option value="Amist Kilo Campus">Amist Kilo Campus</option>
+                        <option value="6 Kilo (AAiT) Campus">6 Kilo (AAiT) Campus</option>
+                        <option value="Tikur Anbessa Campus">Tikur Anbessa Campus</option>
+                        <option value="School of Commerce">School of Commerce</option>
+                        <option value="Kotebe Campus">Kotebe Campus</option>
+                        <option value="Other/Not Sure">Other/Not Sure</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="editLocation" id="editLocationLabel">Location*</label>
+                    <input type="text" id="editLocation" required>
+                </div>
+                <div class="input-group">
+                    <label for="editDate" id="editDateLabel">Date*</label>
+                    <input type="date" id="editDate" required>
+                </div>
+                <div class="input-group">
+                    <label for="editContact">Contact Info*</label>
+                    <input type="text" id="editContact" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-tertiary" data-modal-close>Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="saveChangesBtn_modal">
+                        <span class="btn-text">Save Changes</span>
+                        <span class="spinner"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="reclaimModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" data-modal-close aria-label="Close reclaim dialog">&times;</button>
+            <h3 class="modal-title">Claimer's Information</h3>
+            <form id="reclaimForm" class="modal-form" novalidate>
+                <div id="reclaimFormMessage" class="form-message" aria-live="assertive"></div>
+                
+                <input type="hidden" id="reclaimFoundItemId">
+                <input type="hidden" id="reclaimFinderUserId">
+                <input type="hidden" id="reclaimFinderName">
+                <input type="hidden" id="reclaimFinderContact">
+                <input type="hidden" id="reclaimItemName">
+                
+                <p class="form-description">Please fill out the details of the person claiming the item. This information will be recorded for security purposes.</p>
+
+                <div class="input-group">
+                    <label for="reclaimClaimerName">Claimer's Full Name*</label>
+                    <input type="text" id="reclaimClaimerName" required>
+                </div>
+                <div class="input-group">
+                    <label for="reclaimClaimerPhone">Claimer's Phone*</label>
+                    <input type="tel" id="reclaimClaimerPhone" required>
+                </div>
+                <div class="input-group">
+                    <label for="reclaimClaimerEmail">Claimer's Email*</label>
+                    <input type="email" id="reclaimClaimerEmail" required>
+                </div>
+                <div class="input-group">
+                    <label for="reclaimClaimerId">Photo of Claimer's ID*</label>
+                    <input type="file" id="reclaimClaimerId" accept="image/*" required>
+                </div>
+                <div class="input-group">
+                    <label for="reclaimNotes">Notes (Optional)</label>
+                    <textarea id="reclaimNotes" rows="3"></textarea>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-tertiary" data-modal-close>Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="submitReclaimBtn">
+                        <span class="btn-text">Confirm & Resolve</span>
+                        <span class="spinner"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <footer class="footer">
+        <p>&copy; <span id="currentYear"></span> Lost & Found System. All rights reserved.</p>
+    </footer>
+
+    <script type="module" src="profile.js"></script>
+</body>
+</html>

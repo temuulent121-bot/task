@@ -1,0 +1,238 @@
+
+:root {
+  /* Light Theme Colors */
+  --bg-light: #f8f9fa;
+  --card-bg-light: #ffffff;
+  --text-light: #212529;
+  --text-muted-light: #6c757d;
+  --border-light: #dee2e6;
+  --input-bg-light: #ffffff;
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --btn-tertiary-border-light: #ced4da;
+  --btn-tertiary-hover-bg-light: rgba(0, 0, 0, 0.03);
+  --btn-tertiary-hover-border-light: #adb5bd;
+  --brand-text-light: #6c757d;
+  /* Light Secondary Button (Used for Browse on report forms, keep consistent)*/
+  --btn-secondary-bg-light: transparent;
+  --btn-secondary-text-light: var(--primary-color);
+  --btn-secondary-border-light: var(--primary-color);
+  --btn-secondary-hover-bg-light: var(--primary-color);
+  --btn-secondary-hover-text-light: #ffffff;
+  --btn-secondary-hover-border-light: var(--primary-color);
+
+  /* Dark Theme Colors */
+  --dark-bg: #121212;
+  --card-bg-dark: #1e1e1e;
+  --text-dark: #f5f5f5;
+  --text-muted-dark: #aaa;
+  --border-dark: #444;
+  --input-bg-dark: #2a2a2a;
+  --shadow-dark: rgba(0, 0, 0, 0.3);
+  --btn-tertiary-border-dark: var(--border-dark);
+  --btn-tertiary-hover-bg-dark: rgba(255, 255, 255, 0.05);
+  --btn-tertiary-hover-border-dark: var(--text-muted-dark);
+  --brand-text-dark: var(--text-muted-dark);
+  /* Dark Secondary Button */
+   --btn-secondary-bg-dark: transparent;
+   --btn-secondary-text-dark: var(--text-muted-dark);
+   --btn-secondary-border-dark: var(--border-dark);
+   --btn-secondary-hover-bg-dark: var(--border-dark);
+   --btn-secondary-hover-text-dark: var(--text-dark);
+   --btn-secondary-hover-border-dark: var(--border-dark);
+
+  /* Shared Accent Colors */
+  --primary-color: #8A2BE2;
+  --primary-hover: #7B1FA2;
+  --error-color: #ff4d4f;
+  --success-color: #52c41a;
+  --shadow-color-primary: rgba(138, 43, 226, 0.2); 
+
+  /* Global Font & Transitions */
+  --font-family: 'Poppins', sans-serif;
+  --transition-speed: 0.3s;
+  --border-radius: 8px;
+}
+
+/* --- Default Theme (Dark) --- */
+:root {
+  --current-bg: var(--dark-bg);
+  --current-card-bg: var(--card-bg-dark);
+  --current-text: var(--text-dark);
+  --current-text-muted: var(--text-muted-dark);
+  --current-border: var(--border-dark);
+  --current-input-bg: var(--input-bg-dark);
+  --current-shadow: var(--shadow-dark);
+  --current-btn-tertiary-border: var(--btn-tertiary-border-dark);
+  --current-btn-tertiary-hover-bg: var(--btn-tertiary-hover-bg-dark);
+  --current-btn-tertiary-hover-border: var(--btn-tertiary-hover-border-dark);
+  --current-brand-text: var(--brand-text-dark);
+  /* Default Secondary Button */
+  --current-btn-secondary-bg: var(--btn-secondary-bg-dark);
+  --current-btn-secondary-text: var(--btn-secondary-text-dark);
+  --current-btn-secondary-border: var(--btn-secondary-border-dark);
+  --current-btn-secondary-hover-bg: var(--btn-secondary-hover-bg-dark);
+  --current-btn-secondary-hover-text: var(--btn-secondary-hover-text-dark);
+  --current-btn-secondary-hover-border: var(--btn-secondary-hover-border-dark);
+  color-scheme: dark;
+}
+
+/* --- Light Theme Overrides --- */
+html.light-theme {
+  --current-bg: var(--bg-light);
+  --current-card-bg: var(--card-bg-light);
+  --current-text: var(--text-light);
+  --current-text-muted: var(--text-muted-light);
+  --current-border: var(--border-light);
+  --current-input-bg: var(--input-bg-light);
+  --current-shadow: var(--shadow-light);
+  --current-btn-tertiary-border: var(--btn-tertiary-border-light);
+  --current-btn-tertiary-hover-bg: var(--btn-tertiary-hover-bg-light);
+  --current-btn-tertiary-hover-border: var(--btn-tertiary-hover-border-light);
+  --current-brand-text: var(--brand-text-light);
+   /* Light Secondary Button */
+  --current-btn-secondary-bg: var(--btn-secondary-bg-light);
+  --current-btn-secondary-text: var(--btn-secondary-text-light);
+  --current-btn-secondary-border: var(--btn-secondary-border-light);
+  --current-btn-secondary-hover-bg: var(--btn-secondary-hover-bg-light);
+  --current-btn-secondary-hover-text: var(--btn-secondary-hover-text-light);
+  --current-btn-secondary-hover-border: var(--btn-secondary-hover-border-light);
+  color-scheme: light;
+}
+
+/* --- Global Styles --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { height: 100%; }
+body {
+  font-family: var(--font-family);
+  background: linear-gradient(135deg, var(--current-bg) 0%, color-mix(in srgb, var(--current-bg) 80%, var(--current-text) 20%) 100%);
+  color: var(--current-text);
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  overflow-x: hidden;
+  transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+/* --- Auth Container & Card --- */
+.auth-container { width: 100%; max-width: 420px; text-align: center; }
+.auth-card {
+  position: relative; 
+  background-color: var(--current-card-bg);
+  padding: 2.5rem; 
+  padding-top: 3.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 10px 30px var(--current-shadow);
+  border: 1px solid var(--current-border);
+  animation: fadeIn 0.5s ease-out;
+  transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.auth-card h2 { font-size: 1.8rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--current-text); transition: color var(--transition-speed) ease; }
+.auth-card .subtitle { font-size: 0.95rem; color: var(--current-text-muted); margin-bottom: 2rem; transition: color var(--transition-speed) ease; }
+
+/* --- Theme Toggle Switch (Positioned inside card) --- */
+.auth-theme-switch {
+  margin-left: 17rem;
+  margin-bottom: 2rem;
+}
+.theme-switch { position: relative; display: inline-block; width: 50px; height: 26px; cursor: pointer; }
+.theme-switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--input-bg-dark); transition: var(--transition-speed); border: 1px solid var(--current-border); }
+.slider.round { border-radius: 34px; }
+.slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 4px; bottom: 3px; background-color: var(--text-muted-dark); transition: var(--transition-speed); border-radius: 50%; }
+.slider-icon { position: absolute; top: 50%; transform: translateY(-50%); font-size: 0.8rem; transition: opacity var(--transition-speed) ease; pointer-events: none; }
+.slider-icon.light { left: 5px; color: #f1c40f; opacity: 0;}
+.slider-icon.dark { right: 5px; color: #f1c40f; opacity: 1;}
+html.light-theme .slider { background-color: #ccc; }
+html.light-theme .slider:before { background-color: white; }
+html.light-theme .slider-icon.light { opacity: 1; }
+html.light-theme .slider-icon.dark { opacity: 0; }
+input#themeToggle:checked + .slider { background-color: var(--primary-color); }
+input#themeToggle:checked + .slider:before { transform: translateX(23px); background-color: var(--text-dark); }
+input#themeToggle:checked ~ .slider .slider-icon.light { opacity: 0; }
+input#themeToggle:checked ~ .slider .slider-icon.dark { opacity: 1; color: white; }
+input#themeToggle:not(:checked) + .slider { background-color: #ccc; } 
+input#themeToggle:not(:checked) + .slider:before { transform: translateX(0px); background-color: white; }
+input#themeToggle:not(:checked) ~ .slider .slider-icon.light { opacity: 1; color: #f39c12;}
+input#themeToggle:not(:checked) ~ .slider .slider-icon.dark { opacity: 0; }
+
+
+/* --- Input Group & Floating Labels (Use Variables) --- */
+.input-group { position: relative; margin-bottom: 1.75rem; text-align: left; }
+.input-group .input-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--current-text-muted); font-size: 0.9rem; transition: color var(--transition-speed) ease; z-index: 2; }
+.input-group input { width: 100%; padding: 14px 15px 14px 45px; font-size: 1rem; background-color: var(--current-input-bg); color: var(--current-text); border: 1px solid var(--current-border); border-radius: var(--border-radius); transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease, background-color var(--transition-speed) ease, color var(--transition-speed) ease; position: relative; z-index: 1; outline: none; }
+.input-group.floating label { position: absolute; left: 45px; top: 15px; color: var(--current-text-muted); font-size: 1rem; font-weight: 400; pointer-events: none; transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1); z-index: 2; background-color: var(--current-card-bg); padding: 0 5px; }
+.input-group .input-border { position: absolute; bottom: 0; left: 0; height: 2px; width: 100%; background-color: var(--primary-color); transform: scaleX(0); transform-origin: center; transition: transform var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1); z-index: 3; pointer-events: none; }
+.input-group input:focus { border-color: var(--primary-color); }
+.input-group input:focus ~ label, .input-group input:valid ~ label, .input-group input.has-value ~ label, .input-group input:-webkit-autofill ~ label { top: -10px; left: 10px; font-size: 0.75rem; color: var(--primary-color); z-index: 3; font-weight: 500; background-color: var(--current-card-bg); }
+html.light-theme .input-group.floating label { background-color: var(--card-bg-light); }
+html:not(.light-theme) .input-group.floating label { background-color: var(--card-bg-dark); }
+.input-group input:focus ~ .input-icon { color: var(--primary-color); }
+.input-group input:focus ~ .input-border { transform: scaleX(1); }
+
+/* Autofill Theming */
+html.light-theme input:-webkit-autofill, html.light-theme input:-webkit-autofill:hover, html.light-theme input:-webkit-autofill:focus, html.light-theme input:-webkit-autofill:active { -webkit-box-shadow: 0 0 0 30px var(--input-bg-light) inset !important; -webkit-text-fill-color: var(--text-light) !important; caret-color: var(--text-light); border-color: var(--border-light); }
+html.light-theme input:-webkit-autofill:focus { border-color: var(--primary-color); }
+html:not(.light-theme) input:-webkit-autofill, html:not(.light-theme) input:-webkit-autofill:hover, html:not(.light-theme) input:-webkit-autofill:focus, html:not(.light-theme) input:-webkit-autofill:active { -webkit-box-shadow: 0 0 0 30px var(--input-bg-dark) inset !important; -webkit-text-fill-color: var(--text-dark) !important; caret-color: var(--text-dark); border-color: var(--border-dark); }
+html:not(.light-theme) input:-webkit-autofill:focus { border-color: var(--primary-color); }
+
+
+/* --- Password Toggle --- */
+.password-group { position: relative; }
+.password-group input { padding-right: 45px; }
+.password-toggle { position: absolute; right: 1px; top: 1px; bottom: 1px; width: 40px; background: none; border: none; padding: 0; margin: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--current-text-muted); transition: color var(--transition-speed) ease; z-index: 2; }
+.password-toggle:hover, .password-toggle:focus { color: var(--primary-color); outline: none; }
+.password-toggle i { font-size: 1rem; }
+
+/* --- Forgot Password --- */
+.forgot-password { text-align: right; margin-bottom: 1rem; margin-top: -0.75rem; }
+.forgot-password a { font-size: 0.85rem; color: var(--current-text-muted); text-decoration: none; transition: color var(--transition-speed) ease; }
+.forgot-password a:hover { color: var(--primary-color); text-decoration: underline; }
+
+/* --- Buttons --- */
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.8rem 1.8rem; border-radius: var(--border-radius); font-weight: 500; font-size: 0.95rem; cursor: pointer; border: 1px solid transparent; transition: all var(--transition-speed) ease; text-transform: uppercase; letter-spacing: 0.5px; position: relative; overflow: hidden; width: 100%; }
+.btn .btn-text { transition: opacity var(--transition-speed) ease; }
+.btn-primary { background-color: var(--primary-color); color: #fff; border-color: var(--primary-color); box-shadow: 0 4px 15px var(--shadow-color-primary); }
+.btn-primary:hover:not(:disabled) { background-color: var(--primary-hover); border-color: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(138, 43, 226, 0.3); }
+.btn-tertiary { background-color: transparent; color: var(--current-text-muted); border-color: var(--current-btn-tertiary-border); }
+.btn-tertiary:hover:not(:disabled) { background-color: var(--current-btn-tertiary-hover-bg); color: var(--current-text); border-color: var(--current-btn-tertiary-hover-border); }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.spinner { display: inline-block; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 20px; height: 20px; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 50%; border-top-color: #fff; animation: spin 1s ease-in-out infinite; opacity: 0; transition: opacity var(--transition-speed) ease; }
+.btn-tertiary .spinner { border-color: rgba(170, 170, 170, 0.3); border-top-color: var(--text-muted-dark); }
+html.light-theme .btn-tertiary .spinner { border-color: rgba(108, 117, 125, 0.3); border-top-color: var(--text-muted-light); }
+.btn.loading .btn-text { opacity: 0; }
+.btn.loading .spinner { opacity: 1; }
+@keyframes spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+.btn-submit { margin-top: 1rem; }
+
+/* --- Auth Footer --- */
+.auth-footer { margin-top: 2rem; border-top: 1px solid var(--current-border); padding-top: 1.5rem; transition: border-color var(--transition-speed) ease; }
+.switch-link { font-size: 0.9rem; color: var(--current-text-muted); margin-bottom: 1rem; transition: color var(--transition-speed) ease; }
+.switch-link a { color: var(--primary-color); font-weight: 500; text-decoration: none; }
+.switch-link a:hover { text-decoration: underline; color: var(--primary-hover); }
+
+
+/* --- Error Message --- */
+.error-message { background-color: rgba(255, 77, 79, 0.1); color: var(--error-color); border: 1px solid rgba(255, 77, 79, 0.3); border-left: 4px solid var(--error-color); padding: 0.8rem 1rem; border-radius: var(--border-radius); font-size: 0.9rem; margin-bottom: 1.5rem; text-align: left; display: none; animation: shake 0.3s ease-in-out; }
+.error-message.show { display: block; }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 50% { transform: translateX(5px); } 75% { transform: translateX(-3px); } }
+
+/* --- Brand Name Below Card --- */
+.auth-brand { margin-top: 2rem; font-size: 0.85rem; color: var(--current-brand-text); opacity: 0.7; transition: color var(--transition-speed) ease; }
+
+/* --- Responsive --- */
+@media (max-width: 480px) {
+  .auth-card { padding: 2rem 1.5rem; padding-top: 3rem; } 
+  .auth-card h2 { font-size: 1.6rem; }
+  .auth-card .subtitle { font-size: 0.9rem; margin-bottom: 1.5rem; }
+  .input-group input { padding: 12px 12px 12px 40px; font-size: 0.95rem; }
+  .input-group.floating label { left: 40px; font-size: 0.95rem; top: 13px; }
+  .input-group input:focus ~ label, .input-group input:valid ~ label { font-size: 0.7rem; top: -9px; }
+  .btn { padding: 0.7rem 1.5rem; font-size: 0.9rem; }
+  .auth-theme-switch { top: 1rem; right: 1rem; } 
+}

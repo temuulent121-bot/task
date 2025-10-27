@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Admin - Lost & Found</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+      (function() {
+        try {
+          const savedTheme = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (savedTheme === 'light' || (!savedTheme && !prefersDark)) {
+            document.documentElement.classList.add('light-theme');
+          } else {
+            document.documentElement.classList.remove('light-theme');
+          }
+        } catch (e) { console.error("Error applying initial theme:", e); }
+      })();
+    </script>
+    <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="header-left">
+                <button id="menuBtn" class="menu-btn" aria-label="Toggle Menu" aria-expanded="false" aria-controls="navMenu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+                <a href="home.html" class="app-logo">
+                    <i class="fas fa-search-location logo-icon"></i>
+                    <h1 class="app-title">Lost & Found</h1>
+                </a>
+            </div>
+             <div class="header-right">
+                <label class="theme-switch" for="themeToggle" title="Toggle theme">
+                    <input type="checkbox" id="themeToggle">
+                    <span class="slider round">
+                        <span class="slider-icon light"><i class="fas fa-sun"></i></span>
+                        <span class="slider-icon dark"><i class="fas fa-moon"></i></span>
+                    </span>
+                </label>
+                <a href="profile.html" class="profile-link" aria-label="View Profile">
+                    <i class="fas fa-user-circle"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div id="overlay" class="overlay"></div>
+
+    <nav id="navMenu" class="nav-drawer" aria-hidden="true">
+        <div class="nav-drawer-header">
+            <h2 class="nav-drawer-title">Menu</h2>
+        </div>
+        <ul>
+            <li><a href="home.html" class="nav-link"><i class="fas fa-home nav-icon"></i>Home</a></li>
+            <li><a href="report-lost.html" class="nav-link"><i class="fas fa-eye-slash nav-icon"></i>Report Lost Item</a></li>
+            <li><a href="report-found.html" class="nav-link"><i class="fas fa-hand-holding-heart nav-icon"></i>Report Found Item</a></li>
+            <li><a href="lost-items.html" class="nav-link"><i class="fas fa-list-ul nav-icon"></i>View Lost Items</a></li>
+            <li><a href="found-items.html" class="nav-link"><i class="fas fa-box-open nav-icon"></i>View Found Items</a></li>
+            <li><a href="claimed-items.html" class="nav-link"><i class="fas fa-history nav-icon"></i>View Claimed Items</a></li>
+            <li><a href="contact.html" class="nav-link active-page"><i class="fas fa-envelope nav-icon"></i>Contact Admin</a></li>
+            <li><a href="profile.html" class="nav-link"><i class="fas fa-user-circle nav-icon"></i>My Profile</a></li>
+        </ul>
+         <div class="nav-footer">
+            <button id="logoutButton" class="btn btn-tertiary btn-logout">
+                <i class="fas fa-sign-out-alt nav-icon"></i>Logout
+            </button>
+         </div>
+    </nav>
+
+    <main class="contact-main">
+        <div class="contact-container animate-on-load fade-in">
+
+            <section class="contact-form-section">
+                <h2 class="contact-title">Get In Touch</h2>
+                <p class="contact-subtitle">Have questions or need assistance? Send us a message!</p>
+                <form id="contactForm" novalidate>
+                    <div id="formMessage" class="form-message" aria-live="assertive"></div>
+                    <div class="input-group floating">
+                        <i class="input-icon fas fa-user"></i>
+                        <input type="text" id="contactName" name="contactName" required>
+                        <label for="contactName">Your Name*</label>
+                    </div>
+                    <div class="input-group floating">
+                        <i class="input-icon fas fa-envelope"></i>
+                        <input type="email" id="contactEmail" name="contactEmail" required>
+                        <label for="contactEmail">Your Email*</label>
+                    </div>
+                    <div class="input-group floating">
+                        <i class="input-icon fas fa-heading"></i>
+                        <input type="text" id="contactSubject" name="contactSubject" required>
+                        <label for="contactSubject">Subject*</label>
+                    </div>
+                    <div class="input-group floating textarea-group">
+                        <i class="input-icon fas fa-align-left"></i>
+                        <textarea id="contactMessage" name="contactMessage" rows="5" required></textarea>
+                        <label for="contactMessage">Message*</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-submit-contact">
+                        <span class="btn-text">Send Message</span>
+                        <span class="spinner"></span>
+                    </button>
+                </form>
+            </section>
+
+            <section class="contact-details-section">
+                <h3 class="details-title">Contact Information</h3>
+                <p class="details-subtitle">You can reach the AAU School of Commerce administration through the following channels.</p>
+                <div class="info-blocks-container">
+                    <div class="contact-info-block">
+                        <div class="info-icon-wrapper"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="info-text">
+                            <h4>School of Commerce Address</h4>
+                            <p>Addis Ababa University<br>Ras Abebe Aregai St (Mexico Area)<br>Addis Ababa, Ethiopia</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-block">
+                        <div class="info-icon-wrapper"><i class="fas fa-phone-alt"></i></div>
+                        <div class="info-text">
+                            <h4>School of Commerce Phone</h4>
+                            <p><a href="tel:+251115518020">+251 11 551 8020</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-info-block">
+                        <div class="info-icon-wrapper"><i class="fas fa-envelope"></i></div>
+                        <div class="info-text">
+                            <h4>School of Commerce Email</h4>
+                            <p><a href="mailto:commerce.registrar@aau.edu.et">commerce.registrar@aau.edu.et</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-info-block">
+                        <div class="info-icon-wrapper"><i class="fas fa-clock"></i></div>
+                        <div class="info-text">
+                            <h4>Office Hours</h4>
+                            <p>Monday - Friday<br>8:00 AM - 5:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <h4>Follow AAU</h4>
+                    <a href="https://www.facebook.com/aau.edu.et" target="_blank" rel="noopener noreferrer" aria-label="AAU Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com/aau_ethiopia" target="_blank" rel="noopener noreferrer" aria-label="AAU Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/school/addis-ababa-university/" target="_blank" rel="noopener noreferrer" aria-label="AAU LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="http://www.aau.edu.et/" target="_blank" rel="noopener noreferrer" aria-label="AAU Website"><i class="fas fa-globe"></i></a>
+                </div>
+                 <div class="map-container">
+                    <h4>School of Commerce Location</h4>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.662223829792!2d38.74221131526717!3d9.00289899354117!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b85775b318615%3A0x738747d5193554a!2sAddis%20Ababa%20University%20School%20of%20Commerce!5e0!3m2!1sen!2set!4v1628594237789!5m2!1sen!2set"
+                        width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade" title="AAU School of Commerce Location">
+                    </iframe>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>© <span id="currentYear"></span> Lost & Found System. All rights reserved.</p>
+    </footer>
+
+    <script type="module" src="contact.js"></script>
+</body>
+</html>

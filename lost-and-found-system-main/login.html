@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Lost & Found</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+      (function() {
+        try {
+          // Simplified theme check: defaults to dark unless 'light' is specified or preferred.
+          const theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+          if (theme === 'light') {
+            document.documentElement.classList.add('light-theme');
+          }
+        } catch (e) { console.error("Error applying initial theme:", e); }
+      })();
+    </script>
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <label class="theme-switch auth-theme-switch" for="themeToggle" title="Toggle theme">
+                <input type="checkbox" id="themeToggle">
+                <span class="slider round">
+                     <span class="slider-icon light"><i class="fas fa-sun"></i></span>
+                     <span class="slider-icon dark"><i class="fas fa-moon"></i></span>
+                </span>
+            </label>
+            
+            <h2>Welcome Back!</h2>
+            <p class="subtitle">Log in to access the Lost & Found system.</p>
+
+            <form id="loginForm" novalidate>
+                <div id="errorMessage" class="error-message" aria-live="assertive"></div>
+
+                <div class="input-group floating">
+                    <i class="input-icon fas fa-envelope"></i>
+                    <input type="email" id="email" name="email" required autocomplete="email">
+                    <label for="email">School Email</label>
+                    <span class="input-border"></span>
+                </div>
+
+                <div class="input-group floating password-group">
+                    <i class="input-icon fas fa-lock"></i>
+                    <input type="password" id="password" name="password" required autocomplete="current-password">
+                    <label for="password">Password</label>
+                    <button type="button" class="password-toggle" aria-label="Show password">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <span class="input-border"></span>
+                </div>
+
+                <div class="forgot-password">
+                    <a href="#">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-submit">
+                    <span class="btn-text">Login</span>
+                    <span class="spinner"></span>
+                </button>
+            </form>
+
+            <div class="divider">or</div>
+
+            <div class="auth-footer">
+                <p class="switch-link">Don't have an account? <a href="signup.html">Sign Up</a></p>
+            </div>
+        </div>
+        <p class="auth-brand">Lost & Found System</p>
+    </div>
+
+    <script type="module" src="auth.js"></script>
+</body>
+</html>
